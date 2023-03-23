@@ -107,29 +107,43 @@ public class UserHome extends JFrame implements ActionListener {
 
         } else if (e.getSource() == changePassword) {
             // action
-//            UpdatePassword up = new UpdatePassword();
-//            up.setTitle("Change Password");
-//            up.setVisible(true);
+//            UpdatePassword obj = new UpdatePassword();
+//            obj.setTitle("Change Password");
+//            obj.setVisible(true);
 
 
         } else if (e.getSource() == logOut){
             // action
-            int a = JOptionPane.showConfirmDialog(logOut, "Are you sure?");
-            JOptionPane.setRootFrame(null);
-            if (a == JOptionPane.YES_OPTION) {
+//            int a = JOptionPane.showConfirmDialog(logOut, "Are you sure?");
+//            JOptionPane.setRootFrame(null);
+//
+//            if (a == JOptionPane.YES_OPTION) {
+//                dispose();
+//                Login obj = new Login();
+//                obj.setTitle("User Login");
+//                obj.setVisible(true);
+//            }
+//            else if (a == JOptionPane.NO_OPTION) {
+//                dispose();
+//                UserHome obj = new UserHome();
+//                obj.setTitle("Account");
+//                obj.setVisible(true);
+
+            int confirm = JOptionPane.showConfirmDialog(UserHome.this,
+                    "Are you sure you want to logout?", "Confirm Logout",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirm == JOptionPane.YES_OPTION) {
                 dispose();
                 Login obj = new Login();
-                obj.setTitle("User-Login");
                 obj.setVisible(true);
-            }
-            dispose();
-            Login obj = new Login();
 
-            obj.setTitle("User-Login");
-            obj.setVisible(true);
+            }
+
 
 
         }
+
+
 
     }
 
