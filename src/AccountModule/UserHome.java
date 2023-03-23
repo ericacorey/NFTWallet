@@ -35,8 +35,8 @@ public class UserHome extends JFrame implements ActionListener {
     public UserHome() {
         setTitle("Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(500, 500, 600, 450);
-        setResizable(true);
+        setMinimumSize(new Dimension(400, 700));
+        setResizable(false);
 
         // Create a JPanel to hold the content
         JPanel panel = new JPanel(new GridBagLayout());
@@ -100,15 +100,35 @@ public class UserHome extends JFrame implements ActionListener {
         if (e.getSource() == connectButton) {
             // action
 
+
         } else if (e.getSource() == manageButton) {
             // action
 
+
         } else if (e.getSource() == changePassword) {
             // action
+//            UpdatePassword up = new UpdatePassword();
+//            up.setTitle("Change Password");
+//            up.setVisible(true);
 
 
         } else if (e.getSource() == logOut){
-            //
+            // action
+            int a = JOptionPane.showConfirmDialog(logOut, "Are you sure?");
+            JOptionPane.setRootFrame(null);
+            if (a == JOptionPane.YES_OPTION) {
+                dispose();
+                Login obj = new Login();
+                obj.setTitle("User-Login");
+                obj.setVisible(true);
+            }
+            dispose();
+            Login obj = new Login();
+
+            obj.setTitle("User-Login");
+            obj.setVisible(true);
+
+
         }
 
     }

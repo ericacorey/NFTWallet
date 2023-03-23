@@ -38,8 +38,9 @@ public class Login extends JFrame implements ActionListener {
     public Login() {
         setTitle("Login Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(500, 500, 600, 450);
-        setResizable(true);
+//        setBounds(500, 500, 600, 450);
+        setMinimumSize(new Dimension(400, 700));
+        setResizable(false);
 
         // Create a JPanel to hold the content
         JPanel panel = new JPanel(new GridBagLayout());
@@ -51,7 +52,7 @@ public class Login extends JFrame implements ActionListener {
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_END;
         usernameLabel = new JLabel("Username ");
-        usernameLabel.setFont(new Font("Times", Font.PLAIN, 24));
+        usernameLabel.setFont(new Font("Times", Font.PLAIN, 22));
         panel.add(usernameLabel, c);
 
         // enter username text field
@@ -59,8 +60,8 @@ public class Login extends JFrame implements ActionListener {
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;
         c.fill = GridBagConstraints.HORIZONTAL;
-        usernameField = new JTextField(10);
-        usernameField.setFont(new Font("Times", Font.PLAIN, 24));
+        usernameField = new JTextField(7);
+        usernameField.setFont(new Font("Times", Font.PLAIN, 22));
         usernameField.setBounds(0, 0, 281, 68);
         panel.add(usernameField, c);
 
@@ -69,7 +70,7 @@ public class Login extends JFrame implements ActionListener {
         c.gridy = 1;
         c.anchor = GridBagConstraints.LINE_END;
         passwordLabel = new JLabel("Password ");
-        passwordLabel.setFont(new Font("Times", Font.PLAIN, 24));
+        passwordLabel.setFont(new Font("Times", Font.PLAIN, 22));
         passwordLabel.setBounds(20, 0, 281, 68);
         panel.add(passwordLabel, c);
 
@@ -77,8 +78,8 @@ public class Login extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 1;
         c.anchor = GridBagConstraints.LINE_START;
-        passwordField = new JPasswordField(10);
-        passwordField.setFont(new Font("Times", Font.PLAIN, 24));
+        passwordField = new JPasswordField(7);
+        passwordField.setFont(new Font("Times", Font.PLAIN, 22));
         panel.add(passwordField, c);
 
         // Login Button
@@ -90,6 +91,7 @@ public class Login extends JFrame implements ActionListener {
         loginButton = new JButton("Login");
         loginButton.addActionListener(this);
         panel.add(loginButton, c);
+
 
         c.gridx = 1;
         c.gridy = 3;
