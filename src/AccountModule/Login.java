@@ -1,8 +1,9 @@
 package AccountModule;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 
 public class Login extends JFrame implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
     private JLabel usernameLabel, passwordLabel;
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -38,7 +40,6 @@ public class Login extends JFrame implements ActionListener {
     public Login() {
         setTitle("Login Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setBounds(500, 500, 600, 450);
         setMinimumSize(new Dimension(400, 700));
         setResizable(false);
 
@@ -137,7 +138,7 @@ public class Login extends JFrame implements ActionListener {
                     ResultSet rs = st.executeQuery();
                     if (rs.next()) {
                         dispose();
-                        UserHome screen = new UserHome();
+                        UserHome screen = new UserHome(username);
                         screen.setTitle("Account");
                         screen.setVisible(true);
                         JOptionPane.showMessageDialog(newButton, "You have successfully logged in");

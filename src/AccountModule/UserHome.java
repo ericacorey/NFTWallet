@@ -1,19 +1,21 @@
 package AccountModule;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud;
+//import com.mysql.cj.x.protobuf.MysqlxCrud;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
 
+public class UserHome extends JFrame {
 
-public class UserHome extends JFrame implements ActionListener {
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
     private JButton connectButton, manageButton, changePassword, logOut;
 
@@ -32,7 +34,13 @@ public class UserHome extends JFrame implements ActionListener {
             }
         });
     }
+
     public UserHome() {
+
+    }
+
+
+    public UserHome(String userAccount) {
         setTitle("Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(400, 700));
@@ -44,15 +52,22 @@ public class UserHome extends JFrame implements ActionListener {
 
         // Connect Button
         GridBagConstraints c = new GridBagConstraints();
-        // Login Button
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 0;
         c.gridheight = 2;
         c.insets = new Insets(10, 0, 0, 0); // Add some spacing
         connectButton = new JButton("Connect NFT");
-        connectButton.addActionListener(this);
         panel.add(connectButton, c);
+
+        // connect button action
+        connectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+
 
         c.gridx = 0;
         c.gridy = 1;
@@ -61,8 +76,16 @@ public class UserHome extends JFrame implements ActionListener {
         c.anchor = GridBagConstraints.CENTER;
         c.insets = new Insets(50, 0, 0, 0); // Add some spacing
         manageButton = new JButton("Manage NFT");
-        manageButton.addActionListener(this);
         panel.add(manageButton, c);
+
+        // manage button action
+        manageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+
 
         c.gridx = 0;
         c.gridy = 2;
@@ -71,8 +94,19 @@ public class UserHome extends JFrame implements ActionListener {
         c.anchor = GridBagConstraints.CENTER;
         c.insets = new Insets(50, 0, 0, 0); // Add some spacing
         changePassword = new JButton("Change Password");
-        changePassword.addActionListener(this);
         panel.add(changePassword, c);
+
+        // change password action
+        changePassword.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                UpdatePassword obj = new UpdatePassword(userAccount);
+                obj.setTitle("Change Password");
+                obj.setVisible(true);
+
+            }
+        });
+
+
 
         c.gridx = 0;
         c.gridy = 3;
@@ -81,8 +115,22 @@ public class UserHome extends JFrame implements ActionListener {
         c.anchor = GridBagConstraints.CENTER;
         c.insets = new Insets(50, 0, 0, 0); // Add some spacing
         logOut = new JButton("Logout");
-        logOut.addActionListener(this);
         panel.add(logOut, c);
+
+        // logOut action
+        logOut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int confirm = JOptionPane.showConfirmDialog(UserHome.this,
+                        "Are you sure you want to logout?", "Confirm Logout",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    dispose();
+                    Login obj = new Login();
+                    obj.setVisible(true);
+                }
+            }
+
+        });
 
         // Add the panel to the frame
         getContentPane().add(panel, BorderLayout.CENTER);
@@ -95,63 +143,8 @@ public class UserHome extends JFrame implements ActionListener {
 
 
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == connectButton) {
-            // action
-
-
-        } else if (e.getSource() == manageButton) {
-            // action
-
-
-        } else if (e.getSource() == changePassword) {
-            // action
-//            UpdatePassword obj = new UpdatePassword();
-//            obj.setTitle("Change Password");
-//            obj.setVisible(true);
-
-
-        } else if (e.getSource() == logOut){
-            // action
-//            int a = JOptionPane.showConfirmDialog(logOut, "Are you sure?");
-//            JOptionPane.setRootFrame(null);
-//
-//            if (a == JOptionPane.YES_OPTION) {
-//                dispose();
-//                Login obj = new Login();
-//                obj.setTitle("User Login");
-//                obj.setVisible(true);
-//            }
-//            else if (a == JOptionPane.NO_OPTION) {
-//                dispose();
-//                UserHome obj = new UserHome();
-//                obj.setTitle("Account");
-//                obj.setVisible(true);
-
-            int confirm = JOptionPane.showConfirmDialog(UserHome.this,
-                    "Are you sure you want to logout?", "Confirm Logout",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (confirm == JOptionPane.YES_OPTION) {
-                dispose();
-                Login obj = new Login();
-                obj.setVisible(true);
-
-            }
-
-
-
-        }
-
-
-
-    }
-
-
-
-
-
 }
+
 
 
 
