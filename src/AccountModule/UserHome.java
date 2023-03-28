@@ -17,7 +17,7 @@ public class UserHome extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    private JButton connectButton, manageButton, changePassword, logOut;
+    private JButton connectButton, manageButton, transaction, changePassword, logOut;
 
     /**
      * Launch the application.
@@ -43,8 +43,9 @@ public class UserHome extends JFrame {
     public UserHome(String userAccount) {
         setTitle("Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 700));
+        setMinimumSize(new Dimension(550, 550));
         setResizable(false);
+
 
         // Create a JPanel to hold the content
         JPanel panel = new JPanel(new GridBagLayout());
@@ -63,7 +64,9 @@ public class UserHome extends JFrame {
         // connect button action
         connectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                ConnectNFT obj = new ConnectNFT(userAccount);
+                obj.setTitle("Connect NFT");
+                obj.setVisible(true);
 
             }
         });
@@ -86,9 +89,26 @@ public class UserHome extends JFrame {
             }
         });
 
-
         c.gridx = 0;
         c.gridy = 2;
+        c.gridwidth = 0;
+        c.gridheight = 2;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(50, 0, 0, 0); // Add some spacing
+        transaction = new JButton("Transactions");
+        panel.add(transaction, c);
+
+        // manage button action
+        transaction.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+
+
+        c.gridx = 0;
+        c.gridy = 3;
         c.gridwidth = 0;
         c.gridheight = 2;
         c.anchor = GridBagConstraints.CENTER;
@@ -109,7 +129,7 @@ public class UserHome extends JFrame {
 
 
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         c.gridwidth = 0;
         c.gridheight = 2;
         c.anchor = GridBagConstraints.CENTER;

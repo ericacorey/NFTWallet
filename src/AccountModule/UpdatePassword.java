@@ -54,7 +54,7 @@ public class UpdatePassword extends JFrame {
      */
     public UpdatePassword(String name) {
         setTitle("Update Password");
-        setMinimumSize(new Dimension(400, 700));
+        setMinimumSize(new Dimension(550, 550));
         setResizable(false);
 
 //        contentPane = new JPanel();

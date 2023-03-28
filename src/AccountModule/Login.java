@@ -2,7 +2,11 @@ package AccountModule;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.net.URL;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,11 +17,12 @@ import java.sql.SQLException;
 public class Login extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private JLabel usernameLabel, passwordLabel;
+    private JLabel usernameLabel, passwordLabel, logoLabel;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton registerButton, loginButton, newButton;
 
+//    ImageIcon logo = new ImageIcon("logo.png");
     /**
      * Launch the application.
      */
@@ -25,8 +30,10 @@ public class Login extends JFrame implements ActionListener {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Login frame = new Login();
-                    frame.setVisible(true);
+                    SwingUtilities.invokeLater(()-> new Login());
+//                    Login frame = new Login();
+//                    frame.setVisible(true);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -40,20 +47,35 @@ public class Login extends JFrame implements ActionListener {
     public Login() {
         setTitle("Login Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 700));
+        setMinimumSize(new Dimension(550, 550));
         setResizable(false);
+
+//	    File dir1 = new File ("logo.png");
+//	    System.out.println("img directory: " + dir1.getAbsolutePath());
+
+        ImageIcon ImageIcon = new ImageIcon("/Users/ruhuanliao/NFTWallet/NFTGuardian/NFTGuardian/src/image/logo.png");
+        logoLabel = new JLabel(ImageIcon);
+        logoLabel.setSize(170, 170 );	// ImageIcon.getIconWidth(), ImageIcon.getIconHeight()
+        logoLabel.setLocation(210, 0);
+        logoLabel.setBorder(new EmptyBorder(20,0,0,0));		// top, left bottom, right
+
+        add(logoLabel, BorderLayout.CENTER);
+
 
         // Create a JPanel to hold the content
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add some padding
+//        panel.setBackground(new Color(73,132,184));	// panel background color
+
+        GridBagConstraints c = new GridBagConstraints();
+
 
         // username label
-        GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_END;
         usernameLabel = new JLabel("Username ");
-        usernameLabel.setFont(new Font("Times", Font.PLAIN, 22));
+        usernameLabel.setFont(new Font("Times", Font.PLAIN, 20));
         panel.add(usernameLabel, c);
 
         // enter username text field
@@ -62,7 +84,7 @@ public class Login extends JFrame implements ActionListener {
         c.anchor = GridBagConstraints.LINE_START;
         c.fill = GridBagConstraints.HORIZONTAL;
         usernameField = new JTextField(7);
-        usernameField.setFont(new Font("Times", Font.PLAIN, 22));
+        usernameField.setFont(new Font("Times", Font.PLAIN, 20));
         usernameField.setBounds(0, 0, 281, 68);
         panel.add(usernameField, c);
 
@@ -71,7 +93,7 @@ public class Login extends JFrame implements ActionListener {
         c.gridy = 1;
         c.anchor = GridBagConstraints.LINE_END;
         passwordLabel = new JLabel("Password ");
-        passwordLabel.setFont(new Font("Times", Font.PLAIN, 22));
+        passwordLabel.setFont(new Font("Times", Font.PLAIN, 20));
         passwordLabel.setBounds(20, 0, 281, 68);
         panel.add(passwordLabel, c);
 
@@ -80,7 +102,7 @@ public class Login extends JFrame implements ActionListener {
         c.gridy = 1;
         c.anchor = GridBagConstraints.LINE_START;
         passwordField = new JPasswordField(7);
-        passwordField.setFont(new Font("Times", Font.PLAIN, 22));
+        passwordField.setFont(new Font("Times", Font.PLAIN, 20));
         panel.add(passwordField, c);
 
         // Login Button
