@@ -30,7 +30,7 @@ public class Register extends JFrame implements ActionListener {
     public Register() {
         setTitle("Register Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 700));
+        setMinimumSize(new Dimension(550, 550));
         setResizable(false);
 
         // Create a JPanel to hold the content
