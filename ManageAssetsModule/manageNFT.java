@@ -2,40 +2,27 @@ package ManageAssetsModule;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.Scanner;
 
 public class manageNFT {
 
     public static void main(String[] args) {
-        try {
-            connectToDataBase();
-            // Line 20 is a custom based on your local database. Remove "airportdb" and
-            // replace with the db that your using. Likewise, use the username and password
-            // you used when setting up your database connection.
-
-            // System.out.println("Connection Sucessful!.......");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo", "root",
-                    "taco");
-
-            System.out.println("Connection Sucessful!.......");
-
-            Statement statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("select * from nfttokens");
-
-            while (resultSet.next()) {
-                String Name = resultSet.getString("name");
-                String creator = resultSet.getString("creator");
-                String locked = resultSet.getString("lock_status");
-                // System.out.println(resultSet.getString("lock_status"));
-                System.out.println("Name: " + Name);
-                System.out.println("Creator: " + creator);
-                System.out.println("Locked: " + verifyNFT(locked, Name));
-                System.out.println("-------------------");
-
+        Scanner Console = new Scanner(System.in);
+        String choice = "";
+        while (choice.equals("0") == false) {
+            System.out.println("1. Show Table\n2. Lock NFT\n3. UnLock NFT\n0. Close Program.");
+            choice = Console.nextLine();
+            switch (choice) {
+                case "1":
+                    Showtable();
+                    break;
+                case "2":
+                    lockNFT();
+                    break;
+                case "3":
+                    unlockNFT();
+                    break;
             }
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         /**
@@ -62,7 +49,6 @@ public class manageNFT {
     }
 
     /**
-     * // need to get NFT from other file.
      * 
      * //NFT NFT1 = new NFT("Magic_Mike", 100, true);
      * 
@@ -91,6 +77,36 @@ public class manageNFT {
      * 
      **/
 
+    public static void Showtable() {
+        try {
+            // connectToDataBase();
+            // System.out.println("Connection Sucessful!.......");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo", "root",
+                    "taco");
+
+            System.out.println("Connection Sucessful!.......");
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from nfttokens");
+
+            while (resultSet.next()) {
+                String Name = resultSet.getString("name");
+                String creator = resultSet.getString("creator");
+                String locked = resultSet.getString("lock_status");
+                // System.out.println(resultSet.getString("lock_status"));
+                System.out.println("Name: " + Name);
+                System.out.println("Creator: " + creator);
+                System.out.println("Locked: " + verifyNFT(locked, Name));
+                System.out.println("-------------------");
+
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean verifyNFT(String locked, String Name) {
         boolean result = false;
         if (locked != null) {
@@ -106,15 +122,22 @@ public class manageNFT {
     }
 
     public static void lockNFT() {
-
+        System.out.println("Type the name of the nft you want to lock");
+        Scanner console = new Scanner(System.in);
+        String nftName = console.nextLine();
+        String com = "update nfttokens set lock_status = 1 where name = \"" + nftName + "\";";
+        System.out.println(com);
+        connectToDataBase(com);
     }
 
-    public static void unlockNFT()//Set to 0 if locked
+    public static void unlockNFT()// Set to 0 if locked
     {
-        //update nfttokens set lock_status = 0 where name = "BORED APE #2"
         System.out.println("Type the name of the nft you want to unlock");
-        String nftName = "";
-        connectToDataBase(String com);
+        Scanner console = new Scanner(System.in);
+        String nftName = console.nextLine();
+        String com = "update nfttokens set lock_status = 0 where name = \"" + nftName + "\";";
+        System.out.println(com);
+        connectToDataBase(com);
     }
 
     public static void connectToDataBase(String com) {
@@ -127,6 +150,9 @@ public class manageNFT {
 
             // ResultSet resultSet = statement.executeQuery("select * from nfttokens");
             PreparedStatement state = connection.prepareStatement(com);
+            state.executeUpdate();
+            state.close();
+            connection.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
