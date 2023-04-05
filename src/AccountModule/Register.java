@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 
 public class Register extends JFrame implements ActionListener {
@@ -69,7 +70,7 @@ public class Register extends JFrame implements ActionListener {
         c.gridy = 1;
         c.anchor = GridBagConstraints.LINE_START;
         c.fill = GridBagConstraints.HORIZONTAL;
-        emailField = new JPasswordField(7);
+        emailField = new JTextField(7);
         emailField.setFont(new Font("Times", Font.PLAIN, 18));
         emailField.setBounds(0, 0, 281, 68);
         panel.add(emailField, c);
@@ -82,7 +83,7 @@ public class Register extends JFrame implements ActionListener {
         passwordLabel.setFont(new Font("Times", Font.PLAIN, 18));
         panel.add(passwordLabel, c);
 
-        // password email text field
+        // enter password text field
         c.gridx = 1;
         c.gridy = 2;
         c.anchor = GridBagConstraints.LINE_START;
@@ -128,33 +129,6 @@ public class Register extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         setVisible(true);
-
-
-//        nameLabel = new JLabel("Name: ");
-//        add(nameLabel);
-//        nameField = new JTextField();
-//        add(nameField);
-//
-//        emailLabel = new JLabel("Email: ");
-//        add(emailLabel);
-//        emailField = new JTextField();
-//        add(emailField);
-//
-//        passwordLabel = new JLabel("Password: ");
-//        add(passwordLabel);
-//        passwordField = new JPasswordField();
-//        add(passwordField);
-//
-//        confirmPasswordLabel = new JLabel("Confirm Password: ");
-//        add(confirmPasswordLabel);
-//        confirmPasswordField = new JPasswordField();
-//        add(confirmPasswordField);
-//
-//        registerButton = new JButton("Register");
-//        add(registerButton);
-//        registerButton.addActionListener(this);
-
-//        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -173,7 +147,40 @@ public class Register extends JFrame implements ActionListener {
             } else if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(this, "Passwords do not match.");
             } else {
-                // TODO: Register the account
+                // Register the account action
+                try {
+                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo",
+                            "root", "root");
+
+                    PreparedStatement st = (PreparedStatement) connection
+                            .prepareStatement("Select name, password, email from user_account");
+                    ResultSet rs = st.executeQuery();
+                    boolean userFound= false;
+                    while (rs.next()){
+                        if (name.equals(rs.getString("name"))){
+                            userFound = true;
+                            JOptionPane.showMessageDialog(this, "Username is already taken. Please choose a new username.");
+                            break;
+                        }
+                    }
+                    if (!userFound){
+                        String query = "INSERT INTO user_account(name, password, email) VALUES(?, ?, ?)";
+                        PreparedStatement st2 = connection.prepareStatement(query);
+                        st2.setString(1, name);
+                        st2.setString(2, password);
+                        st2.setString(3, email);
+                        st2.executeUpdate();
+                        dispose();
+                        UserHome screen = new UserHome(name);
+                        screen.setTitle("Account");
+                        screen.setVisible(true);
+                        JButton newButton = new JButton();
+                        JOptionPane.showMessageDialog(newButton, "You have successfully registered!");
+
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
             }
         }
     }
