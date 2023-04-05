@@ -91,8 +91,7 @@ public class UserHome extends JFrame {
         profilePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
         profilePanel.add(profilePanelLabel);
         tabbedPane.addTab("Profile", icon, profilePanel);
-
-
+        
 //        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
 //            JLabel tabLabel = new JLabel(tabbedPane.getTitleAt(i), SwingConstants.CENTER);
 //            tabLabel.setPreferredSize(new Dimension(100, 50));
