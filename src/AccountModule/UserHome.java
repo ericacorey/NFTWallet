@@ -50,60 +50,40 @@ public class UserHome extends JFrame {
         setMinimumSize(new Dimension(550, 550));
         setResizable(false);
 
-//        // Create a JPanel to hold the content
-//        JPanel panel = new JPanel(new GridBagLayout());
-//        panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Add some padding
-
         // create a new JTabbedPane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setForeground(new Color(0, 150,255));
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        ImageIcon icon = new ImageIcon("java-swing-tutorial.JPG");
-
         // create four inner panels with different components and add them to the tabbedPane
 
         // Home page panel
         homePanel = new JPanel();
-        homePanelLabel = new JLabel("Connect and Protect your NFTs", SwingConstants.CENTER);
-        homePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
-        homePanel.add(homePanelLabel);
-        tabbedPane.addTab("Home", icon, homePanel);
+        tabbedPane.addTab("Home", homePanel);
         tabbedPane.setSelectedIndex(0);
 
         // Manage NFT panel
         managePanel = new JPanel();
-        managePanelLabel = new JLabel("Manage your NFTs", SwingConstants.CENTER);
-        managePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
-        managePanel.add(managePanelLabel);
-        tabbedPane.addTab("Manage NFT", icon, managePanel);
+        tabbedPane.addTab("Manage NFT", managePanel);
 
         // View NFT panel
         viewPanel = new JPanel();
-        viewPanelLabel = new JLabel("View your NFTs", SwingConstants.CENTER);
-        viewPanelLabel.setFont(new Font("Times", Font.BOLD, 18));
-        viewPanel.add(viewPanelLabel);
-        tabbedPane.addTab("View NFT", icon, viewPanel);
+        tabbedPane.addTab("View NFT", viewPanel);
 
         // Profile panel
         profilePanel = new JPanel(new GridBagLayout());
         profilePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add some padding
+        tabbedPane.addTab("Profile", profilePanel);
 
-//        profilePanel = new JPanel();
-        profilePanelLabel = new JLabel("View your profile", SwingConstants.CENTER);
-        profilePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
-        profilePanel.add(profilePanelLabel);
-        tabbedPane.addTab("Profile", icon, profilePanel);
-
-//        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-//            JLabel tabLabel = new JLabel(tabbedPane.getTitleAt(i), SwingConstants.CENTER);
-//            tabLabel.setPreferredSize(new Dimension(100, 50));
-//            tabbedPane.setTabComponentAt(i, tabLabel);
-//        }
 
         // ----------------------------------- Home panel design ---------------------------------------------------------------
 
-        // Home page image icon
+        // Home panel label
+        homePanelLabel = new JLabel("Connect and Protect your NFTs", SwingConstants.CENTER);
+        homePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
+        homePanel.add(homePanelLabel);
+
+        // Home panel image icon
         imageIcon = new ImageIcon("/Users/ruhuanliao/NFTWallet/NFTGuardian/NFTGuardian/src/image/HomePageImg.png");
         homeImageLabel = new JLabel(imageIcon);
         homeImageLabel.setSize( 550,400 );	// ImageIcon.getIconWidth(), ImageIcon.getIconHeight()
@@ -128,13 +108,26 @@ public class UserHome extends JFrame {
 
         // ----------------------------------- Manage panel design ---------------------------------------------------------------
 
+        // Manage panel label
+        managePanelLabel = new JLabel("Manage your NFTs", SwingConstants.CENTER);
+        managePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
+        managePanel.add(managePanelLabel);
 
 
         // ----------------------------------- View panel design -----------------------------------------------------------------
 
+        // View panel labedl
+        viewPanelLabel = new JLabel("View your NFTs", SwingConstants.CENTER);
+        viewPanelLabel.setFont(new Font("Times", Font.BOLD, 18));
+        viewPanel.add(viewPanelLabel);
 
 
         // ----------------------------------- Profile panel design --------------------------------------------------------------
+
+        // Profile panel label
+        profilePanelLabel = new JLabel("View your profile", SwingConstants.CENTER);
+        profilePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
+        profilePanel.add(profilePanelLabel);
 
         // Transaction button
         GridBagConstraints c = new GridBagConstraints();
@@ -165,7 +158,7 @@ public class UserHome extends JFrame {
         changePasswordButton = new JButton("Change password");
         profilePanel.add(changePasswordButton, c);
 
-        // manage button action
+        // Change password button action
         changePasswordButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 UpdatePassword obj = new UpdatePassword(userAccount);
@@ -184,7 +177,7 @@ public class UserHome extends JFrame {
         logoutButton = new JButton("Logout");
         profilePanel.add(logoutButton, c);
 
-        // manage button action
+        // Logout button action
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int confirm = JOptionPane.showConfirmDialog(UserHome.this,
