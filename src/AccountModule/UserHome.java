@@ -21,7 +21,7 @@ public class UserHome extends JFrame {
 
     private ImageIcon imageIcon;
 
-    private JButton connectButton;
+    private JButton connectButton, transactionButton, changePasswordButton, logoutButton;
 
     /**
      * Launch the application.
@@ -86,19 +86,22 @@ public class UserHome extends JFrame {
         tabbedPane.addTab("View NFT", icon, viewPanel);
 
         // Profile panel
-        profilePanel = new JPanel();
+        profilePanel = new JPanel(new GridBagLayout());
+        profilePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add some padding
+
+//        profilePanel = new JPanel();
         profilePanelLabel = new JLabel("View your profile", SwingConstants.CENTER);
         profilePanelLabel.setFont(new Font("Times", Font.BOLD, 18));
         profilePanel.add(profilePanelLabel);
         tabbedPane.addTab("Profile", icon, profilePanel);
-        
+
 //        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
 //            JLabel tabLabel = new JLabel(tabbedPane.getTitleAt(i), SwingConstants.CENTER);
 //            tabLabel.setPreferredSize(new Dimension(100, 50));
 //            tabbedPane.setTabComponentAt(i, tabLabel);
 //        }
 
-        // Home panel design
+        // ----------------------------------- Home panel design ---------------------------------------------------------------
 
         // Home page image icon
         imageIcon = new ImageIcon("/Users/ruhuanliao/NFTWallet/NFTGuardian/NFTGuardian/src/image/HomePageImg.png");
@@ -123,47 +126,66 @@ public class UserHome extends JFrame {
         });
 
 
-        // Add the tabbed pane to this panel.
-        setLayout(new GridLayout(1, 1));
-        add(tabbedPane);
-
-        // Center the frame on the screen
-        setLocationRelativeTo(null);
-
-        setVisible(true);
+        // ----------------------------------- Manage panel design ---------------------------------------------------------------
 
 
 
+        // ----------------------------------- View panel design -----------------------------------------------------------------
 
-/*
+
+
+        // ----------------------------------- Profile panel design --------------------------------------------------------------
+
+        // Transaction button
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 0;
+        c.gridheight = 2;
+        c.insets = new Insets(10, 0, 0, 0); // Add some spacing
+        connectButton = new JButton("Transactions");
+        profilePanel.add(connectButton, c);
+
+        // Transaction button action
+        connectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+
+
+        // Change password button
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 0;
+        c.gridheight = 2;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(50, 0, 0, 0); // Add some spacing
+        changePasswordButton = new JButton("Change password");
+        profilePanel.add(changePasswordButton, c);
+
         // manage button action
-        manageButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
-
-
-        transaction.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
-
-        // change password action
-        changePassword.addActionListener(new ActionListener() {
+        changePasswordButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 UpdatePassword obj = new UpdatePassword(userAccount);
                 obj.setTitle("Change Password");
                 obj.setVisible(true);
-
             }
         });
 
-        // logOut action
-        logOut.addActionListener(new ActionListener() {
+        // Logout button
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridwidth = 0;
+        c.gridheight = 2;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(50, 0, 0, 0); // Add some spacing
+        logoutButton = new JButton("Logout");
+        profilePanel.add(logoutButton, c);
+
+        // manage button action
+        logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int confirm = JOptionPane.showConfirmDialog(UserHome.this,
                         "Are you sure you want to logout?", "Confirm Logout",
@@ -174,32 +196,19 @@ public class UserHome extends JFrame {
                     obj.setVisible(true);
                 }
             }
-
         });
 
- */
 
+        // Add the tabbed pane to this panel.
+        setLayout(new GridLayout(1, 1));
+        add(tabbedPane);
 
+        // Center the frame on the screen
+        setLocationRelativeTo(null);
+
+        setVisible(true);
 
     }
-
-    /*
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == homeButton) {
-            // Home button action
-//            dispose();
-//            Register screen = new Register();
-
-        } else if (e.getSource() == manageButton) {
-            // Manage button action
-
-        } else if (e.getSource() == viewButton) {
-            // View button action
-
-        }
-    }
-    */
 
 }
 
