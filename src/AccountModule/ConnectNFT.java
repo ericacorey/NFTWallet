@@ -53,7 +53,7 @@ public class ConnectNFT extends JFrame {
      * Create the frame.
      */
     public ConnectNFT(String name) {
-        setTitle("Update Password");
+        setTitle("Connect NFT");
         setMinimumSize(new Dimension(550, 550));
         setResizable(false);
 
@@ -61,7 +61,7 @@ public class ConnectNFT extends JFrame {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add some padding
 
-        // mew password label
+        // Enter token label
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
@@ -70,7 +70,7 @@ public class ConnectNFT extends JFrame {
         tokenEnter.setFont(new Font("Times", Font.PLAIN, 22));
         panel.add(tokenEnter, c);
 
-        // enter username text field
+        // enter token text field
         c.gridx = 1;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;

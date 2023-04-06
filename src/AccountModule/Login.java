@@ -22,7 +22,6 @@ public class Login extends JFrame implements ActionListener {
     private JPasswordField passwordField;
     private JButton registerButton, loginButton, newButton;
 
-//    ImageIcon logo = new ImageIcon("logo.png");
     /**
      * Launch the application.
      */
@@ -50,6 +49,7 @@ public class Login extends JFrame implements ActionListener {
         setMinimumSize(new Dimension(550, 550));
         setResizable(false);
 
+        // Code to find out the image directory for logo image
 //	    File dir1 = new File ("logo.png");
 //	    System.out.println("img directory: " + dir1.getAbsolutePath());
 
