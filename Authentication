@@ -1,0 +1,80 @@
+/**
+package AuthenticationModule;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Authentication {
+    String systemOTP, userOTP, s = "";
+    static int rNum;
+    Register line 172
+    Login line 163
+    public String Authenticate(String user){
+
+        }
+    public Frame(){
+
+        setTitle("Authentication Screen");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setMinimumSize(new Dimension(550, 550));
+        setResizable(false)
+
+        // Create a JPanel to hold the content
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add some padding
+        GridBagConstraints c = new GridBagConstraints();
+
+        // OTP label
+        c.gridx = 0;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.LINE_END;
+        OTPlabel = new JLabel("One Time Password");
+        OTPlabel.setFont(new Font("Times", Font.PLAIN, 20));
+        panel.add(OTPlabel, c);
+
+        // enter OTP text field
+        c.gridx = 1;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.LINE_START;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        otpField = new JTextField(7);
+        otpField.setFont(new Font("Times", Font.PLAIN, 20));
+        otpField.setBounds(0, 0, 281, 68);
+        panel.add(otpField, c);
+
+        // Authenticate Button
+        c.gridx = 1;
+        c.gridy = 2;
+        c.gridwidth = 0;
+        c.gridheight = 2;
+        c.insets = new Insets(10, 0, 0, 0); // Add some spacing
+        authenticateButton = new JButton("Authenticate");
+        authenticateButton.addActionListener(this);
+        panel.add(authenticateButton, c);
+
+    }
+    public void getOTP() {
+        for (int i = 0; i < 6; i++) {
+            rNum = new Random().nextInt(9);
+            s = s.concat(Integer.toString(rNum));
+        }
+        systemOTP = s;
+        getUserOTP(systemOTP);
+    }
+
+    public String getUserOTP(String sOTP){
+        //Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login_demo");
+            //String q = SELECT email FROM user WHERE name = n;
+        //Statement st = conn.createStatement();
+        //ResultSet rs = st.executeQuery(q);
+        //sendEmail(systemOTP);
+        System.out.print("Enter the code sent to 'email': ");
+        Scanner sc = new Scanner(System.in);
+        userOTP = sc.nextLine();
+    }
+
+
+}
+**/
