@@ -3,13 +3,17 @@ package AccountModule;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
-public class ViewNFT extends JPanel {
+public class ViewPanel extends JPanel {
     private JLabel viewPanelLabel;
 
-    public ViewNFT(String name) throws SQLException {
+    public ViewPanel(String name) throws SQLException {
+
         // View panel label
 //        setLayout(new GridLayout(0, 2));
 //        viewPanelLabel = new JLabel("View your NFTs", SwingConstants.CENTER);
@@ -23,8 +27,9 @@ public class ViewNFT extends JPanel {
         Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo",
                 "root", "root");
 
+
         // Retrieve the relevant data from the SQL database using SQL queries
-        String query = "SELECT floor_price, img_url FROM NFTs WHERE owner_id = ?";
+        String query = "SELECT id, name, floor_price FROM NFTs WHERE owner_id = ?";
         PreparedStatement stmt = con.prepareStatement(query);
         stmt.setInt(1, getUserId(con, name));
         ResultSet rs = stmt.executeQuery();
@@ -43,7 +48,9 @@ public class ViewNFT extends JPanel {
 
 
 
+
     }
+
 
     private TableModel buildTableModel (ResultSet rs) throws SQLException {
         ResultSetMetaData metaData = rs.getMetaData();
