@@ -5,7 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-
+/**
+ * File Name: Register.java
+ * Purpose: Allow user to register account with system, updating the user database
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ */
 public class Register extends JFrame implements ActionListener {
 
     private JLabel nameLabel, emailLabel, passwordLabel, confirmPasswordLabel;
@@ -28,6 +33,10 @@ public class Register extends JFrame implements ActionListener {
             }
         });
     }
+
+    /**
+     * Creates the java swing UI for the register user page
+     */
     public Register() {
         setTitle("Register Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,7 +92,7 @@ public class Register extends JFrame implements ActionListener {
         passwordLabel.setFont(new Font("Times", Font.PLAIN, 18));
         panel.add(passwordLabel, c);
 
-        // password email text field
+        // enter password text field
         c.gridx = 1;
         c.gridy = 2;
         c.anchor = GridBagConstraints.LINE_START;
@@ -129,35 +138,13 @@ public class Register extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         setVisible(true);
-
-
-//        nameLabel = new JLabel("Name: ");
-//        add(nameLabel);
-//        nameField = new JTextField();
-//        add(nameField);
-//
-//        emailLabel = new JLabel("Email: ");
-//        add(emailLabel);
-//        emailField = new JTextField();
-//        add(emailField);
-//
-//        passwordLabel = new JLabel("Password: ");
-//        add(passwordLabel);
-//        passwordField = new JPasswordField();
-//        add(passwordField);
-//
-//        confirmPasswordLabel = new JLabel("Confirm Password: ");
-//        add(confirmPasswordLabel);
-//        confirmPasswordField = new JPasswordField();
-//        add(confirmPasswordField);
-//
-//        registerButton = new JButton("Register");
-//        add(registerButton);
-//        registerButton.addActionListener(this);
-
-//        setVisible(true);
     }
 
+    /**
+     * Provides main functionality for registering a user; prompts user for info and enters them
+     * into database if proper info is supplied
+     * @param e Action event representing the clicking of the Register button
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registerButton) {
             String name = nameField.getText();
@@ -166,7 +153,7 @@ public class Register extends JFrame implements ActionListener {
             String confirmPassword = new String(confirmPasswordField.getPassword());
 
             if (name.equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter your username.");
+                JOptionPane.showMessageDialog(this, "Please enter your name.");
             } else if (email.equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter your email.");
             } else if (password.equals("")) {
@@ -174,7 +161,7 @@ public class Register extends JFrame implements ActionListener {
             } else if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(this, "Passwords do not match.");
             } else {
-                // TODO: Register the account
+                // Register the account action
                 try {
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo",
                             "root", "root");
@@ -189,8 +176,8 @@ public class Register extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(this, "Username is already taken. Please choose a new username.");
                             break;
                         }
-                }
-                if (!userFound){
+                    }
+                    if (!userFound){
                         String query = "INSERT INTO user_account(name, password, email) VALUES(?, ?, ?)";
                         PreparedStatement st2 = connection.prepareStatement(query);
                         st2.setString(1, name);
