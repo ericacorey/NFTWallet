@@ -2,8 +2,6 @@ package AccountModule;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.net.URL;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,6 +11,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+/**
+ * File name: Login.java
+ * Purpose: Take username and password for login into the account
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ * */
 
 public class Login extends JFrame implements ActionListener {
 
@@ -48,10 +53,6 @@ public class Login extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(550, 550));
         setResizable(false);
-
-        // Code to find out the image directory for logo image
-//	    File dir1 = new File ("logo.png");
-//	    System.out.println("img directory: " + dir1.getAbsolutePath());
 
         ImageIcon ImageIcon = new ImageIcon("/Users/ruhuanliao/NFTWallet/NFTGuardian/NFTGuardian/src/image/logo.png");
         logoLabel = new JLabel(ImageIcon);

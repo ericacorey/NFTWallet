@@ -3,24 +3,19 @@ package AccountModule;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
+/**
+ * File name: ViewPanel.java
+ * Purpose: Displays NFTs connected to user account in the ViewNFT tab panel
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ * */
 public class ViewPanel extends JPanel {
-    private JLabel viewPanelLabel;
+//    private JLabel viewPanelLabel;
 
     public ViewPanel(String name) throws SQLException {
-
-        // View panel label
-//        setLayout(new GridLayout(0, 2));
-//        viewPanelLabel = new JLabel("View your NFTs", SwingConstants.CENTER);
-//        viewPanelLabel.setFont(new Font("Times", Font.BOLD, 18));
-//        add(viewPanelLabel);
-
-
         // Display NFT action
 
         // Connect to the SQL database
@@ -45,9 +40,6 @@ public class ViewPanel extends JPanel {
         rs.close();
         stmt.close();
         con.close();
-
-
-
 
     }
 

@@ -1,7 +1,6 @@
 package AccountModule;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -23,7 +22,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+
+/**
+ * File name: ConnectNFT.java
+ * Purpose: Take NFT token from user input and make connection of NFT to the user account
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ * */
+
 
 public class ConnectNFT extends JFrame {
 

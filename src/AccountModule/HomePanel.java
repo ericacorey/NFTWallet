@@ -5,6 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * File name: HomePanel.java
+ * Purpose: Displays panel layout for Home tab with connect NFT button
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ * */
+
 public class HomePanel extends JPanel {
 
     private JLabel homePanelLabel, homeImageLabel;

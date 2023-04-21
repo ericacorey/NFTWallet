@@ -5,6 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * File name: ProfilePanel.java
+ * Purpose: Displays Profile tab panel layout
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ * */
+
 public class ProfilePanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private JLabel profilePanelLabel;

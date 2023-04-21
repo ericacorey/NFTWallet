@@ -1,14 +1,16 @@
 package AccountModule;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+/**
+ * File name: UserHome.java
+ * Purpose: Display user account content panel and sub panel tabs
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ * */
 
 public class UserHome extends JFrame {
 
@@ -35,11 +37,20 @@ public class UserHome extends JFrame {
         });
     }
 
+    /**
+     * UserHome Class constructor.
+     */
     public UserHome() {
 
     }
 
 
+    /**
+     * UserHome Class constructor specifying user account.
+     * * @throws SQLException  If an input or output
+     * *                      exception occurred
+     * *                      with getting SQL database.
+     */
     public UserHome(String userAccount) throws SQLException {
         setTitle("Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +74,7 @@ public class UserHome extends JFrame {
         tabbedPane.addTab("Manage NFT", managePanel);
 
         // View NFT panel
-        viewPanel = new ViewNFT(userAccount);
+        viewPanel = new ViewPanel(userAccount);
         tabbedPane.addTab("View NFT", viewPanel);
 
         // Profile panel

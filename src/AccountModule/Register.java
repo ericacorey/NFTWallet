@@ -5,6 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
+/**
+ * File Name: Register.java
+ * Purpose: Allow user to register account with system, updating the user database
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ */
 
 public class Register extends JFrame implements ActionListener {
 
@@ -28,6 +34,10 @@ public class Register extends JFrame implements ActionListener {
             }
         });
     }
+
+    /**
+     * Creates the java swing UI for the register user page
+     */
     public Register() {
         setTitle("Register Account");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,6 +141,11 @@ public class Register extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    /**
+     * Provides main functionality for registering a user; prompts user for info and enters them
+     * into database if proper info is supplied
+     * @param e Action event representing the clicking of the Register button
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registerButton) {
             String name = nameField.getText();

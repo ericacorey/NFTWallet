@@ -23,8 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
+
+/**
+ * File Name: UpdatePassword.java
+ * Purpose: Allow user to update their account password
+ * @author Ruhuan Liao, Erica Corey, Stefan Mitrovic, Sean Butler, Aaron Montenegro
+ * @version 1.1
+ */
 public class UpdatePassword extends JFrame {
 
     private static final long serialVersionUID = 1L;
