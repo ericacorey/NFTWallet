@@ -104,23 +104,28 @@ public class UpdatePassword extends JFrame {
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String pstr = textField.getText();
-                try {
-                    System.out.println("update password name " + name);
-                    System.out.println("update password");
+                if (!pstr.equals("")) {
+                    try {
+                        System.out.println("update password name " + name);
+                        System.out.println("update password");
 
-                    Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo",
-                            "root", "root");
+                        Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_demo",
+                                "root", "root");
 
-                    PreparedStatement st = (PreparedStatement) con
-                            .prepareStatement("Update user_account set password=? where name=?");
+                        PreparedStatement st = (PreparedStatement) con
+                                .prepareStatement("Update user_account set password=? where name=?");
 
-                    st.setString(1, pstr);
-                    st.setString(2, name);
-                    st.executeUpdate();
-                    JOptionPane.showMessageDialog(confirmButton, "Password has been successfully changed");
+                        st.setString(1, pstr);
+                        st.setString(2, name);
+                        st.executeUpdate();
+                        JOptionPane.showMessageDialog(confirmButton, "Password has been successfully changed");
 
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
+                    } catch (SQLException sqlException) {
+                        sqlException.printStackTrace();
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(confirmButton,"Please enter your password.");
                 }
 
             }
